@@ -40,10 +40,16 @@ set wrap
 set wildmenu
 set textwidth=79
 set modelines=0
+set noerrorbells
+set hlsearch
+
+" Clear current search
+nmap <silent> ,/ :nohlsearch<CR>
 
 " Essential maps
 inoremap jk <ESC>
 nnoremap ; :
+nnoremap ;; ;
 nnoremap k gk
 nnoremap j gj
 let mapleader = ","
@@ -84,8 +90,8 @@ set expandtab
 set list listchars=tab:»·,trail:·
 
 " NERDTree
-nnoremap <silent> q :NERDTreeToggle<CR>
-let g:NERDTreeWinSize = 24
+nnoremap <silent> <leader>q :NERDTreeToggle<CR>
+let g:NERDTreeWinSize = 20
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -103,11 +109,14 @@ if has("gui_running")
   set guioptions-=T
 endif
 
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+
 " This here auto reloads vim after vimrc save
 augroup myvimrc
-      au!
-          au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+  au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-set background=dark
+set background=light
 colorscheme molokai
+let g:molokai_original = 1
