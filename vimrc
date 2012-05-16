@@ -32,7 +32,7 @@ set nowritebackup
 set noswapfile
 set ruler
 set relativenumber
-set numberwidth=2
+set numberwidth=4
 set backspace=indent,eol,start
 set ttyfast
 set showcmd
@@ -62,16 +62,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Folding
-nnoremap zz zfap
+nnoremap zz zfip
 nnoremap <space> za
 vnoremap <space> zf
 
 augroup vimrcEx
   au!
-
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -116,6 +114,18 @@ augroup myvimrc
   au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+nmap <silent> ,n :call NumberToggle()<CR>
+
+function! NumberToggle()
+  if exists("&rnu")
+    if &number
+      setlocal relativenumber
+    else
+      setlocal number
+    endif
+  endif
+endfunction
 
 set background=light
 colorscheme molokai
