@@ -1,29 +1,43 @@
 # this file goes in your root directory, fill in your info below
 [user]
-	name = # your name here
-	email = # and email
+  name = # your name here
+  email = # and email
 [github]
-	user = # your github username
-	token = # and github token
+  user = # your github username
+  token = # and github token
 [alias]
-	# these are aliases for common git commands
-	# thus instead of doing: git commit -m "Hi I'm commiting."
-	# you can just do: git ci "Hi I'm commiting."
-	# and it does the same thing
-	ci = commit -m
-	co = checkout
-	d = diff
-	br = branch
-	cb = checkout -b # create the specified branch and switch to it, use like git cb <branchname>
-	l = log --oneline --decorate --stat --graph # prettier version of log
-	s = status -sb # a more consise status
-	st = status # the normal status
-	hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative # a very pretty yet consise log view of your commits
-	unstage = reset HEAD # unstage a file your added, use like: git unstage <filename> 
-	m = merge --no-ff # merge with no fast forward to maintain feature branches
+  # these are aliases for common git commands
+  # thus instead of doing: git commit -m "Hi I'm commiting."
+  # you can just do: git ci "Hi I'm commiting."
+  # and it does the same thing
+  ci = commit -m
+  co = checkout
+  d = diff
+  br = branch
+  cb = checkout -b # create the specified branch and switch to it, use like git cb <branchname>
+  l = log --oneline --decorate --stat --graph # prettier version of log
+  s = status -sb # a more consise status
+  st = status # the normal status
+  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative # a very pretty yet consise log view of your commits
+  unstage = reset HEAD # unstage a file your added, use like: git unstage <filename> 
+  m = merge --no-ff # merge with no fast forward to maintain feature branches
 [color]
-	ui = true
+  ui = true
 [color]
-	relativePaths = false
+  relativePaths = false
 [push]
-	default = current # only push current branch 
+  default = current # only push current branch 
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+[url "git@heroku.com:"]
+  insteadOf = "heroku:"
