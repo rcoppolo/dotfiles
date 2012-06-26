@@ -19,14 +19,23 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
+Bundle 'mileszs/ack.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'tpope/vim-surround.git'
 
 " The Basics
 filetype plugin indent on
 syntax on
-set nocompatible
+set showmode
+set autoindent
+set showmatch
+set ignorecase
+set smartcase
+set scrolloff=5
 set history=50
 set laststatus=2
 set incsearch
+set hlsearch
 set nobackup
 set nowritebackup
 set noswapfile
@@ -38,13 +47,23 @@ set ttyfast
 set showcmd
 set wrap
 set wildmenu
-set textwidth=79
 set modelines=0
 set noerrorbells
-set hlsearch
+set hidden
+set gdefault
+
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+
+"Save al buffers on loss of focus
+:au FocusLost * silent! :wa
 
 " Clear current search
-nmap <silent> ,/ :nohlsearch<CR>
+nnoremap <silent> <leader><space> :noh<CR>
+
+" Show registerj
+nnoremap <silent> <leader>r :reg<CR>
 
 " Essential maps
 inoremap jk <ESC>
@@ -56,6 +75,7 @@ let mapleader = ","
 
 " Split maps
 nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>e <C-w>s<C-w>j
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -65,6 +85,13 @@ nnoremap <C-l> <C-w>l
 nnoremap zz zfip
 nnoremap <space> za
 vnoremap <space> zf
+
+" Better searching
+" nnoremap / /\v
+" vnoremap / /\v
+
+nnoremap <tab> %
+vnoremap <tab> %
 
 augroup vimrcEx
   au!
@@ -87,9 +114,18 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 
+" Quick yanking to the end of the line
+nmap Y y$
+
+" Yank/paste to the OS clipboard with ,y and ,p
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+nmap <leader>p "+p
+nmap <leader>P "+P
+
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
-let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSize = 24
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -130,3 +166,5 @@ endfunction
 set background=light
 colorscheme molokai
 let g:molokai_original = 1
+
+au BufRead,BufNewFile *.hamlc set ft=haml
