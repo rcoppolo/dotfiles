@@ -6,10 +6,6 @@
 set nocompatible
 filetype off
 
-" Vundle bundles:
-" for setup on new machine do: git clone git@github.com:gmarik/vundle.git
-" ~/.vim/bundle/vundle
-" and then start vim and go: :BundleInstall
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -22,6 +18,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-surround.git'
+Bundle 'wavded/vim-stylus'
+Bundle 'digitaltoad/vim-jade'
 
 " The Basics
 filetype plugin indent on
@@ -48,7 +46,7 @@ set showcmd
 set wrap
 set wildmenu
 set modelines=0
-set noerrorbells
+set visualbell
 set hidden
 set gdefault
 
@@ -123,6 +121,9 @@ nmap <leader>Y "+yy
 nmap <leader>p "+p
 nmap <leader>P "+P
 
+" CtrlP
+nmap <c-p> :CtrlPMRU<CR>
+
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 24
@@ -168,3 +169,13 @@ colorscheme molokai
 let g:molokai_original = 1
 
 au BufRead,BufNewFile *.hamlc set ft=haml
+
+" Highlights lines that are too long an ugly red color
+highlight OverLength ctermbg=red ctermfg=white guibg=#333333
+match OverLength /\%81v.\+/
+
+" Strips all trailing whitespace in file
+function! StripWhitespace ()
+    exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
