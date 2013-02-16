@@ -176,6 +176,7 @@ match OverLength /\%81v.\+/
 
 " Strips all trailing whitespace in file
 function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
+  exec ':%s/\t/  /'
+  exec ':%s/ \+$//'
 endfunction
 map ,s :call StripWhitespace ()<CR>
