@@ -3,6 +3,8 @@
 " and put in ~/.vim/bundle
 " then start vim and go: :BundleInstall
 
+so ~/.vimrc.rcoppolo
+
 set nocompatible
 filetype off
 
@@ -38,7 +40,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 set ruler
-set relativenumber
+set number
 set numberwidth=4
 set backspace=indent,eol,start
 set ttyfast
@@ -122,7 +124,7 @@ nmap <leader>p "+p
 nmap <leader>P "+P
 
 " CtrlP
-nmap <c-p> :CtrlPMRU<CR>
+nmap <c-p> :CtrlPMRUFiles<CR>
 
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
@@ -165,8 +167,8 @@ function! NumberToggle()
 endfunction
 
 set background=light
-colorscheme molokai
-let g:molokai_original = 1
+colorscheme github
+" let g:molokai_original = 1
 
 au BufRead,BufNewFile *.hamlc set ft=haml
 
@@ -176,6 +178,7 @@ match OverLength /\%81v.\+/
 
 " Strips all trailing whitespace in file
 function! StripWhitespace ()
-    exec ':%s/ \+$//gc'
+    exec ':silent! %s/\t/  /'
+    exec ':silent! %s/ \+$//'
 endfunction
 map ,s :call StripWhitespace ()<CR>
