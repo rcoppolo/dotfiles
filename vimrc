@@ -22,6 +22,9 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-surround.git'
 Bundle 'wavded/vim-stylus'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'edsono/vim-matchit'
+Bundle 'Lokaltog/powerline'
+Bundle 'elixir-lang/vim-elixir'
 
 " The Basics
 filetype plugin indent on
@@ -74,8 +77,8 @@ nnoremap j gj
 let mapleader = ","
 
 " Split maps
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>e <C-w>s<C-w>j
+nnoremap <leader>w :bel :vne<CR>
+nnoremap <leader>e :bel :new<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -167,8 +170,9 @@ function! NumberToggle()
 endfunction
 
 set background=light
-colorscheme github
-" let g:molokai_original = 1
+" colorscheme github
+colorscheme molokai
+let g:molokai_original = 1
 
 au BufRead,BufNewFile *.hamlc set ft=haml
 
@@ -182,3 +186,16 @@ function! StripWhitespace ()
     exec ':silent! %s/ \+$//'
 endfunction
 map ,s :call StripWhitespace ()<CR>
+" Markdown syntax
+au BufNewFile,BufRead *.md set filetype=markdown
+
+au BufNewFile,BufRead *.dtl set filetype=html
+
+" Format JSON shortcut
+" need to: [sudo cpan JSON::XS] first
+map <leader>j  <Esc>:%!json_xs -f json -t json-pretty<CR>
+
+map <leader>t :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" Powerline
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
