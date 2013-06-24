@@ -21,6 +21,7 @@
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'--abbrev-commit --date=relative # a very pretty yet consise log view of your commits
   unstage = reset HEAD # unstage a file your added, use like: git unstage <filename> 
   m = merge --no-ff # merge with no fast forward to maintain feature branches
+  grep = grep -n
 [color]
   ui = true
 [color]
