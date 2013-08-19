@@ -22,6 +22,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-surround.git'
 Bundle 'wavded/vim-stylus'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'tomasr/molokai'
 
 " The Basics
 filetype plugin indent on
