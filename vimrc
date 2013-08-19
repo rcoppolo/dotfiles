@@ -130,6 +130,7 @@ nmap <c-p> :CtrlPMRUFiles<CR>
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 24
+let g:NERDTreeDirArrows=0
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
