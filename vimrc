@@ -3,7 +3,7 @@
 " and put in ~/.vim/bundle
 " then start vim and go: :BundleInstall
 
-so ~/.vimrc.rcoppolo
+" so ~/.vimrc.rcoppolo
 
 set nocompatible
 filetype off
@@ -112,7 +112,7 @@ set shiftwidth=2
 set expandtab
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
+" set list listchars=tab:»·,trail:·
 
 " Quick yanking to the end of the line
 nmap Y y$
@@ -167,8 +167,8 @@ function! NumberToggle()
 endfunction
 
 set background=light
-colorscheme github
-" let g:molokai_original = 1
+colorscheme molokai
+let g:molokai_original = 1
 
 au BufRead,BufNewFile *.hamlc set ft=haml
 
