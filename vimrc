@@ -168,6 +168,7 @@ function! NumberToggle()
   endif
 endfunction
 
+set t_Co=256
 set background=light
 colorscheme molokai
 let g:molokai_original = 1
