@@ -170,9 +170,9 @@ function! NumberToggle()
 endfunction
 
 set t_Co=256
-set background=light
-colorscheme molokai
-let g:molokai_original = 1
+set background=dark
+colorscheme aurelia
+" let g:molokai_original = 1
 
 au BufRead,BufNewFile *.hamlc set ft=haml
 
