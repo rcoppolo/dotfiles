@@ -76,8 +76,8 @@ nnoremap j gj
 let mapleader = ","
 
 " Split maps
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>e <C-w>s<C-w>j
+nnoremap <leader>w :bel :vne<CR>
+nnoremap <leader>e :bel :new<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
