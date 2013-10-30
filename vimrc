@@ -139,6 +139,7 @@ let g:html_indent_tags = 'li\|p'
 " Improve syntax highlighting
 au BufRead,BufNewFile Gemfile set filetype=ruby
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.eex set filetype=html
 
 " Use Ack instead of Grep when available
 if executable("ack")
