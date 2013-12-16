@@ -24,6 +24,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'tomasr/molokai'
+Bundle 'rcoppolo/aurelia'
 
 " The Basics
 filetype plugin indent on
