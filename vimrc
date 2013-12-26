@@ -188,3 +188,6 @@ function! StripWhitespace ()
     exec ':silent! %s/ \+$//'
 endfunction
 map ,s :call StripWhitespace ()<CR>
+
+let g:ctrlp_clear_cache_on_exit=0
+
