@@ -1,9 +1,8 @@
 " Setup for new machine:
-" git clone git@github.com:gmarik/vundle.git
-" and put in ~/.vim/bundle
+" cd ~/.vim/bundle && git clone git@github.com:gmarik/vundle.git
 " then start vim and go: :BundleInstall
 
-so ~/.vimrc.rcoppolo
+" so ~/.vimrc.rcoppolo
 
 set nocompatible
 filetype off
@@ -25,6 +24,19 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'edsono/vim-matchit'
 Bundle 'Lokaltog/powerline'
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'tomasr/molokai'
+Bundle 'guns/vim-clojure-static'
+Bundle 'pangloss/vim-javascript'
+Bundle 'mxw/vim-jsx'
+Bundle 'wting/rust.vim'
+" Bundle 'edkolev/tmuxline.vim'
+" Bundle 'itchyny/lightline.vim'
+Bundle 'bling/vim-airline'
+Bundle 'edkolev/promptline.vim'
+
+let g:airline_theme='aurelia'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " The Basics
 filetype plugin indent on
@@ -55,9 +67,17 @@ set visualbell
 set hidden
 set gdefault
 
+set clipboard=unnamed
+
 set wrap
 set textwidth=79
 set formatoptions=qrn1
+
+set exrc            " enable per-directory .vimrc files
+set secure          " disable unsafe commands in local .vimrc files
+
+" add list lcs=tab:>-,trail:x for tab/trailing space visuals
+autocmd BufEnter ?akefile* set noet ts=8 sw=8 nocindent
 
 "Save al buffers on loss of focus
 :au FocusLost * silent! :wa
@@ -79,10 +99,6 @@ let mapleader = ","
 " Split maps
 nnoremap <leader>w :bel :vne<CR>
 nnoremap <leader>e :bel :new<CR>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Folding
 nnoremap zz zfip
@@ -127,7 +143,7 @@ nmap <leader>p "+p
 nmap <leader>P "+P
 
 " CtrlP
-nmap <c-p> :CtrlPMRUFiles<CR>
+" let g:ctrlp_cmd = 'CtrlPMRU'
 
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
@@ -150,11 +166,12 @@ if has("gui_running")
 endif
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ec :e ~/.vim/colors/aurelia.vim<CR>
 
 " This here auto reloads vim after vimrc save
 augroup myvimrc
   au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,aurelia.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
 nmap <silent> ,n :call NumberToggle()<CR>
@@ -162,8 +179,8 @@ nmap <silent> ,n :call NumberToggle()<CR>
 function! NumberToggle()
   if exists("&rnu")
     if &number
-      setlocal relativenumber
-    else
+      setlocal nonumber
+    elseif
       setlocal number
     endif
   endif
@@ -174,11 +191,26 @@ set background=light
 colorscheme molokai
 let g:molokai_original = 1
 
-au BufRead,BufNewFile *.hamlc set ft=haml
+nmap <silent> ,p :call Paste()<CR>
+nmap <silent> ,o :call NoPaste()<CR>
+
+function! Paste()
+  setlocal paste
+endfunction
+
+function! NoPaste()
+  setlocal nopaste
+endfunction
+
+set background=light
+" colorscheme github
+" colorscheme tomorrow-night-bright
+" colorscheme tomorrow-night
+colorscheme aurelia
 
 " Highlights lines that are too long an ugly red color
-highlight OverLength ctermbg=red ctermfg=white guibg=#333333
-match OverLength /\%81v.\+/
+" highlight OverLength ctermbg=red ctermfg=white guibg=#333333
+" match OverLength /\%81v.\+/
 
 " Strips all trailing whitespace in file
 function! StripWhitespace ()
@@ -186,16 +218,76 @@ function! StripWhitespace ()
     exec ':silent! %s/ \+$//'
 endfunction
 map ,s :call StripWhitespace ()<CR>
-" Markdown syntax
-au BufNewFile,BufRead *.md set filetype=markdown
 
+au BufNewFile,BufRead *.ss set filetype=javascript
+au BufNewFile,BufRead *.ssp set filetype=html
+au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.dtl set filetype=html
+au BufNewFile,BufRead *.eex set filetype=html
+au BufRead,BufNewFile *.hamlc set ft=haml
 
 " Format JSON shortcut
 " need to: [sudo cpan JSON::XS] first
 map <leader>j  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
-map <leader>t :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" map <leader>t :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <leader>t :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " Powerline
 " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+set clipboard=unnamed
+let g:ctrlp_clear_cache_on_exit=0
+
+" Resizing windows
+nnoremap <S-h> <C-w><
+nnoremap <S-j> <C-w>-
+nnoremap <S-k> <C-w>+
+nnoremap <S-l> <C-w>>
+
+
+
+""" FocusMode
+function! ToggleFocusMode()
+  if (&foldcolumn != 12)
+    set laststatus=0
+    set numberwidth=10
+    set foldcolumn=12
+    set noruler
+    hi FoldColumn ctermbg=none
+    hi LineNr ctermfg=0 ctermbg=none
+    hi NonText ctermfg=0
+  else
+    set laststatus=2
+    set numberwidth=4
+    set foldcolumn=0
+    set ruler
+    execute 'colorscheme ' . g:colors_name
+  endif
+endfunc
+nnoremap <silent> <leader>f :call ToggleFocusMode()<CR>
+
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    silent! execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      call system("tmux select-pane -" . a:tmuxdir)
+      redraw!
+    endif
+  endfunction
+
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<cr>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<cr>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<cr>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<cr>
+else
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
