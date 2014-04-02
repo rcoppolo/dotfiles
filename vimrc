@@ -4,6 +4,10 @@
 
 " so ~/.vimrc.rcoppolo
 
+if $SHELL =~ 'fish'
+  set shell=/bin/sh
+endif
+
 set nocompatible
 filetype off
 
