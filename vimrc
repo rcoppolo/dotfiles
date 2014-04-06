@@ -29,7 +29,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
 Bundle 'wting/rust.vim'
-Bundle 'bling/vim-airline'
+Bundle 'rcoppolo/vim-airline'
 Bundle 'rcoppolo/aurelia'
 
 let g:airline_theme='aurelia'
