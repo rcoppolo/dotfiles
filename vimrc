@@ -21,22 +21,16 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mileszs/ack.vim'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-surround.git'
-Bundle 'wavded/vim-stylus'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'edsono/vim-matchit'
-Bundle 'Lokaltog/powerline'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'tomasr/molokai'
 Bundle 'guns/vim-clojure-static'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
 Bundle 'wting/rust.vim'
-" Bundle 'edkolev/tmuxline.vim'
-" Bundle 'itchyny/lightline.vim'
 Bundle 'bling/vim-airline'
-Bundle 'edkolev/promptline.vim'
+Bundle 'rcoppolo/aurelia'
 
 let g:airline_theme='aurelia'
 let g:airline_left_sep=''
@@ -190,11 +184,6 @@ function! NumberToggle()
   endif
 endfunction
 
-set background=light
-" colorscheme github
-colorscheme molokai
-let g:molokai_original = 1
-
 nmap <silent> ,p :call Paste()<CR>
 nmap <silent> ,o :call NoPaste()<CR>
 
@@ -207,10 +196,9 @@ function! NoPaste()
 endfunction
 
 set background=light
-" colorscheme github
-" colorscheme tomorrow-night-bright
-" colorscheme tomorrow-night
 colorscheme aurelia
+" colorscheme molokai
+" let g:molokai_original = 1
 
 " Highlights lines that are too long an ugly red color
 " highlight OverLength ctermbg=red ctermfg=white guibg=#333333
@@ -237,9 +225,6 @@ map <leader>j  <Esc>:%!json_xs -f json -t json-pretty<CR>
 " map <leader>t :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <leader>t :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" Powerline
-" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
 set clipboard=unnamed
 let g:ctrlp_clear_cache_on_exit=0
 
@@ -248,8 +233,6 @@ nnoremap <S-h> <C-w><
 nnoremap <S-j> <C-w>-
 nnoremap <S-k> <C-w>+
 nnoremap <S-l> <C-w>>
-
-
 
 """ FocusMode
 function! ToggleFocusMode()
