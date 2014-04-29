@@ -1,3 +1,5 @@
+" don't use macvim no more :(
+
 if has("gui_running")
   set guioptions-=T
 endif
