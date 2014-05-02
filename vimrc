@@ -1,5 +1,5 @@
 " Setup for new machine:
-" cd ~/.vim/bundle && git clone git@github.com:gmarik/vundle.git
+" git clone git@github.com:gmarik/vundle.git ~/.vim/bundle
 " then start vim and go: :BundleInstall
 
 " so ~/.vimrc.rcoppolo
