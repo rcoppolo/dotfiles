@@ -1,7 +1,3 @@
-" Setup for new machine:
-" git clone git@github.com:gmarik/vundle.git ~/.vim/bundle
-" then start vim and go: :BundleInstall
-
 " so ~/.vimrc.rcoppolo
 
 if $SHELL =~ 'fish'
