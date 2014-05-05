@@ -2,6 +2,9 @@
 [user]
   name = Ryan Coppolo
   email = r@coppolo.com
+[core]
+  editor = /usr/bin/vim
+  excludesfile = ~/.gitignore
 [alias]
   # these are aliases for common git commands
   # thus instead of doing: git commit -m "Hi I'm commiting."

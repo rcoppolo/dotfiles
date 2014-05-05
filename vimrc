@@ -138,6 +138,7 @@ nmap <leader>P "+P
 
 " CtrlP
 " let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_clear_cache_on_exit=0
 
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
@@ -145,10 +146,6 @@ let g:NERDTreeWinSize = 24
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
-
-" Improve syntax highlighting
-au BufRead,BufNewFile Gemfile set filetype=ruby
-au BufRead,BufNewFile *.md set filetype=markdown
 
 " Use Ack instead of Grep when available
 if executable("ack")
@@ -207,9 +204,11 @@ function! StripWhitespace ()
 endfunction
 map ,s :call StripWhitespace ()<CR>
 
+" Improve syntax highlighting
+au BufRead,BufNewFile Gemfile set filetype=ruby
+au BufRead,BufNewFile *.md set filetype=markdown
 au BufNewFile,BufRead *.ss set filetype=javascript
 au BufNewFile,BufRead *.ssp set filetype=html
-au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.dtl set filetype=html
 au BufNewFile,BufRead *.eex set filetype=html
 au BufRead,BufNewFile *.hamlc set ft=haml
@@ -220,9 +219,6 @@ map <leader>j  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " map <leader>t :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <leader>t :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-set clipboard=unnamed
-let g:ctrlp_clear_cache_on_exit=0
 
 " Resizing windows
 nnoremap <S-h> <C-w><
