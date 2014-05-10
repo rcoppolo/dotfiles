@@ -275,3 +275,5 @@ endif
 au VimResized * :wincmd =
 nnoremap J mzJ`z
 
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
