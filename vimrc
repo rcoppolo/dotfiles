@@ -207,6 +207,7 @@ map ,s :call StripWhitespace ()<CR>
 " Improve syntax highlighting
 au BufRead,BufNewFile Gemfile set filetype=ruby
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufNewFile,BufRead *.json set filetype=javascript
 au BufNewFile,BufRead *.ss set filetype=javascript
 au BufNewFile,BufRead *.ssp set filetype=html
 au BufNewFile,BufRead *.dtl set filetype=html
