@@ -95,7 +95,7 @@ nnoremap <leader>w :bel :vne<CR>
 nnoremap <leader>e :bel :new<CR>
 
 " Folding
-nnoremap zz zfip
+" nnoremap zz zfip
 nnoremap <space> za
 vnoremap <space> zf
 
@@ -277,3 +277,6 @@ nnoremap J mzJ`z
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
+
+map N Nzz
+map n nzz
