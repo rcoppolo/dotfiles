@@ -60,9 +60,7 @@ set modelines=0
 set visualbell
 set hidden
 set gdefault
-
 set clipboard=unnamed
-
 set wrap
 set textwidth=79
 set formatoptions=qrn1
@@ -82,13 +80,21 @@ nnoremap <silent> <leader><space> :noh<CR>
 " Show registerj
 nnoremap <silent> <leader>r :reg<CR>
 
+let mapleader = ","
+
 " Essential maps
 inoremap jk <ESC>
 nnoremap ; :
 nnoremap ;; ;
 nnoremap k gk
 nnoremap j gj
-let mapleader = ","
+nnoremap gk k
+nnoremap gj j
+noremap H ^
+noremap L $
+vnoremap L g_
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Split maps
 nnoremap <leader>w :bel :vne<CR>
@@ -102,9 +108,6 @@ vnoremap <space> zf
 " Better searching
 " nnoremap / /\v
 " vnoremap / /\v
-
-nnoremap <tab> %
-vnoremap <tab> %
 
 augroup vimrcEx
   au!
@@ -164,18 +167,6 @@ augroup myvimrc
   au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,aurelia.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
-
-nmap <silent> ,n :call NumberToggle()<CR>
-
-function! NumberToggle()
-  if exists("&rnu")
-    if &number
-      setlocal nonumber
-    elseif
-      setlocal number
-    endif
-  endif
-endfunction
 
 nmap <silent> ,p :call Paste()<CR>
 nmap <silent> ,o :call NoPaste()<CR>
@@ -272,12 +263,14 @@ else
   map <C-l> <C-w>l
 endif
 
-" trying new stuff
-au VimResized * :wincmd =
-nnoremap J mzJ`z
+" maintain cursor location when joining lines
+vnoremap J mzJ`z
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
-map N Nzz
-map n nzz
+" when searching/jumping move selection to center
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap g; g;zz
+nnoremap g, g,zz
