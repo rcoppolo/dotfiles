@@ -274,3 +274,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap g; g;zz
 nnoremap g, g,zz
+
+" typo prevention
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+:command Noh noh
