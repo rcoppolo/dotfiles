@@ -146,6 +146,7 @@ let g:ctrlp_clear_cache_on_exit=0
 
 " NERDTree
 nnoremap <silent> <leader>q :NERDTreeToggle<CR>
+nnoremap <silent> <leader>a :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 24
 
 " Treat <li> and <p> tags like the block tags they are
@@ -205,6 +206,8 @@ au BufNewFile,BufRead *.ssp set filetype=html
 au BufNewFile,BufRead *.dtl set filetype=html
 au BufNewFile,BufRead *.eex set filetype=html
 au BufRead,BufNewFile *.hamlc set ft=haml
+autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
+au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
 
 " Format JSON shortcut
 " need to: [sudo cpan JSON::XS] first
@@ -277,8 +280,8 @@ nnoremap g; g;zz
 nnoremap g, g,zz
 
 " typo prevention
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
-:command Noh noh
+" :command WQ wq
+" :command Wq wq
+" :command W w
+" :command Q q
+" :command Noh noh
