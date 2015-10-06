@@ -7,8 +7,10 @@ endif
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -28,6 +30,9 @@ Bundle 'mxw/vim-jsx'
 Bundle 'wting/rust.vim'
 Bundle 'rcoppolo/vim-airline'
 Bundle 'rcoppolo/aurelia'
+
+call vundle#end()
+filetype plugin indent on
 
 let g:airline_theme='aurelia'
 let g:airline_left_sep=''
