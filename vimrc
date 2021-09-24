@@ -290,3 +290,6 @@ nnoremap g, g,zz
 " :command W w
 " :command Q q
 " :command Noh noh
+
+" ,f to copy current file path to clipboard
+nnoremap ,f :let @+ = expand("%")<Cr>
