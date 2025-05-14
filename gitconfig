@@ -1,9 +1,9 @@
 # this file goes in your root directory, fill in your info below
 [user]
   name = Ryan Coppolo
-  email = r@coppolo.com
+  email = ryan@rockfruit.com
 [core]
-  editor = /usr/bin/vim
+  editor = /opt/homebrew/bin/nvim
   excludesfile = ~/.gitignore
 [alias]
   # these are aliases for common git commands
@@ -42,3 +42,10 @@
   insteadOf = "gist:"
 [url "git@heroku.com:"]
   insteadOf = "heroku:"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[init]
+	defaultBranch = main
