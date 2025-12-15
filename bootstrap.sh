@@ -31,4 +31,15 @@ link_file "vimrc"
 link_file "gitconfig"
 link_file "tmux.conf"
 
+# neovim: create init.vim that sources vimrc
+if [ ! -f "$HOME/.config/nvim/init.vim" ]; then
+  echo "Creating neovim config to source vimrc..."
+  mkdir -p "$HOME/.config/nvim"
+  cat > "$HOME/.config/nvim/init.vim" << 'EOF'
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+EOF
+fi
+
 echo "Done! Run :PlugInstall in vim to install plugins."
