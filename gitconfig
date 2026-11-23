@@ -13,7 +13,7 @@
   ci = commit -m
   co = checkout
   d = diff
-  br = branch
+  br = branch --sort=-committerdate --format='%(committerdate:short) %(refname:short)'
   cb = checkout -b # create the specified branch and switch to it, use like git cb <branchname>
   l = log --oneline --decorate --stat --graph # prettier version of log
   s = status -sb # a more consise status
